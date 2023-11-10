@@ -182,3 +182,11 @@
 .remove-icon {
     cursor: pointer;
 }
+
+
+.tabs-pane {
+    display: none;
+}
+.tabs-pane-show {
+    display: block;
+}

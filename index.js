@@ -50,3 +50,63 @@ for (const checkbox of allCheckbox) {
         updateCounter();
     });
 }
+
+
+function initializeTabs(target, config) {
+    const elTabs = typeof target === 'string' ? document.querySelector(target) : target;
+    const elButtons = elTabs.querySelectorAll('.tabs-btn');
+    const elPanes = elTabs.querySelectorAll('.tabs-pane');
+    init();
+    function init() {
+        elTabs.setAttribute('role', 'tablist');
+        elButtons.forEach((el, index) => {
+            el.dataset.index = index;
+            el.setAttribute('role', 'tab');
+            elPanes[index].setAttribute('role', 'tabpanel');
+        });
+    }
+    function show(elLinkTarget) {
+        const elPaneTarget = elPanes[elLinkTarget.dataset.index];
+        const elLinkActive = elTabs.querySelector('.tabs-btn.active-option');
+        const elPaneShow = elTabs.querySelector('.tabs-pane-show');
+        if (elLinkTarget === elLinkActive) {
+            return;
+        }
+        const paneFrom = elPaneShow;
+        const paneTo = elPaneTarget;
+        elLinkActive ? elLinkActive.classList.remove('active-option') : null;
+        elPaneShow ? elPaneShow.classList.remove('tabs-pane-show') : null;
+        elLinkTarget.classList.add('active-option');
+        elPaneTarget.classList.add('tabs-pane-show');
+        elTabs.dispatchEvent(new CustomEvent('tab.itc.change', {
+            detail: {
+                elTab: elTabs,
+                paneFrom: paneFrom,
+                paneTo: paneTo
+            }
+        }));
+        elLinkTarget.focus();
+    }
+    function showByIndex(index) {
+        const elLinkTarget = elButtons[index];
+        elLinkTarget ? show(elLinkTarget) : null;
+    }
+    function events() {
+        elTabs.addEventListener('click', (e) => {
+            const target = e.target.closest('.tabs-btn');
+            if (target) {
+                e.preventDefault();
+                show(target);
+            }
+        });
+    }
+    init();
+    events();
+    return {
+        show: show,
+        showByIndex: showByIndex
+    };
+}
+const elTab = document.querySelector('.tabs');
+const tabsInstance = initializeTabs(elTab);
+
