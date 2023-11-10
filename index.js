@@ -5,7 +5,7 @@ const selectedItems = document.querySelector('.selected-items');
 const allCheckbox = document.querySelectorAll('.item-to-choose');
 
 button.addEventListener('click', () => {
-    containerSelects.classList.toggle('hide-container-selects');
+    containerSelects.classList.toggle('hide-element');
 });
 
 function updateCounter() {
@@ -13,11 +13,11 @@ function updateCounter() {
     counter.textContent = allChecked.length;
 
     if (allChecked.length) {
-        counter.classList.remove('hide-counter');
-        selectedItems.classList.remove('hide-selected-items');
+        counter.classList.remove('hide-element');
+        selectedItems.classList.remove('hide-element');
     } else {
-        counter.classList.add('hide-counter');
-        selectedItems.classList.add('hide-selected-items');
+        counter.classList.add('hide-element');
+        selectedItems.classList.add('hide-element');
     }
 }
 

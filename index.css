@@ -169,21 +169,12 @@
     background-color: #0067FE;
     opacity: 50%;
 }
-
-.hide-container-selects {
-    display: none;
-}
-.hide-counter {
-    display: none;
-}
-.hide-selected-items {
+.hide-element {
     display: none;
 }
 .remove-icon {
     cursor: pointer;
 }
-
-
 .tabs-pane {
     display: none;
 }
