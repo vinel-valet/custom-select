@@ -108,6 +108,7 @@ function initializeTabs(target) {
                 e.preventDefault();
                 show(target);
             }
+            blurContainer();
         });
     }
     init();
