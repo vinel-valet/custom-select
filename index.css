@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+}
+.wrapper {
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.container-search-line {
+    width: 320px;
+    height: 48px;
+    background-color: #02162D0D;
+    border-radius: 12px;
+    border: 1px solid #07000F66;
+    padding: 0 8px 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.counter {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #0067FE;
+    border: 1px solid #07000F1A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+.search-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.name-field {
+    font: 14px Arial;
+    margin: 0;
+}
+.search-words, .counter {
+    font: bold 16px "Roboto Condensed";
+}
+.container-selects {
+    width: 320px;
+    height: 344px;
+    border-radius: 12px;
+    border: 1px solid #07000F1A;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.container-options {
+    padding: 0 16px;
+    display: flex;
+    gap: 16px;
+    height: 40px;
+    border-bottom: 1px solid #07000F1A;
+    font: bold 16px "Roboto Condensed";
+    color: #07000F66;
+    box-sizing: unset;
+}
+.container-options div {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.active-option {
+    color: #07000F;
+    border-bottom: 1px solid #07000F;
+    box-sizing: unset;
+}
+.selected-items {
+    border-bottom: 1px solid #07000F1A;
+    padding: 5px 16px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow: auto;
+    box-sizing: unset;
+}
+.selected-items::-webkit-scrollbar {
+    display: none;
+}
+.selected-item {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    border: 1px solid #07000F1A;
+    background-color: #02162D0D;
+    padding: 0 12px;
+    font: bold 14px "Roboto Condensed";
+}
+.items-to-choose {
+    padding-top: 8px;
+    margin-right: 8px;
+    overflow: auto;
+}
+.items-to-choose::-webkit-scrollbar {
+    width: 4px;
+    margin-top: 8px;
+}
+.items-to-choose::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #07000F;
+}
+.items-to-choose::-webkit-scrollbar-track {
+    margin: 16px 0 8px;
+}
+.item-to-choose {
+    height: 48px;
+    padding: 0 0 0 16px;
+    display: flex;
+}
+.active-option:hover {
+    border-bottom: 2px solid #07000F;
+}
+.container-options div:hover:not(.active-option) {
+    color: #07000F;
+}
+.item-to-choose:hover {
+    background-color: #02162D0D;
+}
+.custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.custom-checkbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    width: 100%;
+    justify-content: space-between;
+    font: 16px Arial;
+}
+.custom-checkbox+label::after {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #07000F1A;
+    border-radius: 50%;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+.custom-checkbox:checked+label::after {
+    background-color: #0067FE;
+    border: 1px solid #07000F1A;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+.custom-checkbox:not(:disabled):not(:checked)+label:hover::after {
+    background-color: #02162D0D;
+    border-color: #07000F1A;
+}
+.custom-checkbox:checked+label:hover::after {
+    background-color: #085EDB;
+}
+.custom-checkbox:checked:disabled+label::after {
+    background-color: #0067FE;
+    opacity: 50%;
+}
+
+.hide-container-selects {
+    display: none;
+}
+.hide-counter {
+    display: none;
+}
+.hide-selected-items {
+    display: none;
+}
+.remove-icon {
+    cursor: pointer;
+}
