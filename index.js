@@ -21,6 +21,19 @@ function updateCounter() {
     }
 }
 
+function blurContainer () {
+    const tabsShow = document.querySelector('.tabs-pane-show');
+    const blurElement = document.querySelector('.scroll-blur');
+    tabsShow.scrollHeight > tabsShow.clientHeight ? blurElement.style.display = 'block' : blurElement.style.display = 'none';
+    tabsShow.addEventListener('scroll', function() {
+        const blockClientHeight = tabsShow.clientHeight;
+        const blockScrollHeight = tabsShow.scrollHeight;
+        const blockScrollTop = tabsShow.scrollTop;
+        blockClientHeight + blockScrollTop >= blockScrollHeight ? blurElement.style.display = 'none' : blurElement.style.display = 'block';
+    });
+}
+blurContainer();
+
 for (const checkbox of allCheckbox) {
     checkbox.addEventListener('change', () => {
         selectedItems.innerHTML = '';
@@ -44,15 +57,16 @@ for (const checkbox of allCheckbox) {
                 elemDiv.remove();
                 correspondingCheckbox.checked = false;
                 updateCounter();
+                blurContainer();
             });
         }
 
         updateCounter();
+        blurContainer();
     });
 }
 
-
-function initializeTabs(target, config) {
+function initializeTabs(target) {
     const elTabs = typeof target === 'string' ? document.querySelector(target) : target;
     const elButtons = elTabs.querySelectorAll('.tabs-btn');
     const elPanes = elTabs.querySelectorAll('.tabs-pane');
@@ -87,10 +101,6 @@ function initializeTabs(target, config) {
         }));
         elLinkTarget.focus();
     }
-    function showByIndex(index) {
-        const elLinkTarget = elButtons[index];
-        elLinkTarget ? show(elLinkTarget) : null;
-    }
     function events() {
         elTabs.addEventListener('click', (e) => {
             const target = e.target.closest('.tabs-btn');
@@ -102,11 +112,7 @@ function initializeTabs(target, config) {
     }
     init();
     events();
-    return {
-        show: show,
-        showByIndex: showByIndex
-    };
 }
 const elTab = document.querySelector('.tabs');
-const tabsInstance = initializeTabs(elTab);
+initializeTabs(elTab);
 
